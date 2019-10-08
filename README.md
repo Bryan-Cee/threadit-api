@@ -1,2 +1,2 @@
-# threadit-api
+# Threadit-API
 Threadit backend service
