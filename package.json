@@ -1,0 +1,13 @@
+{
+  "name": "threadit-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Bryan-Cee/threadit-api.git",
+  "author": "Bryan-Cee <cheruiyotbryan@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "apollo-server": "^2.9.6",
+    "graphql-tools": "^4.0.5"
+  }
+}
