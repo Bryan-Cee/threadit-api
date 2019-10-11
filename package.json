@@ -6,9 +6,19 @@
   "author": "Bryan-Cee <cheruiyotbryan@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "nodemon lib",
+    "migrate:latest": "npx knex migrate:latest",
+    "migrate:up": "npx knex migrate:up",
+    "migrate:down": "npx knex migrate:down",
+    "seed": "npx knex seed:run"
+  },
   "dependencies": {
     "apollo-server": "^2.9.6",
     "graphql-import": "^0.7.1",
-    "graphql-tools": "^4.0.5"
+    "graphql-tools": "^4.0.5",
+    "knex": "^0.19.5",
+    "nodemon": "^1.19.3",
+    "pg": "^7.12.1"
   }
 }
