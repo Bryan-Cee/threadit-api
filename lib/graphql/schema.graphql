@@ -1,5 +1,10 @@
-#import book from './typeDefs/book.graphql'
+#import user from './typeDefs/user.graphql'
 
 type Query {
     test: String
+    user: User
+}
+
+type Mutation {
+    signup(firstname: String, lastname: String, username: String, password: String): User
 }

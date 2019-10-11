@@ -1,3 +1,5 @@
+require('dotenv-safe').config();
+
 module.exports = {
   development: {
     client: 'pg',

@@ -1,0 +1,6 @@
+type User {
+    username: String
+    firstname: String
+    lastname: String
+    avatar: String
+}
