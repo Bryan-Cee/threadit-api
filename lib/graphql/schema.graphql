@@ -1,5 +1,5 @@
 #import book from './typeDefs/book.graphql'
 
 type Query {
-    books: [Book]
+    test: String
 }
