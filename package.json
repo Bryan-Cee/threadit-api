@@ -21,12 +21,14 @@
   },
   "dependencies": {
     "apollo-server": "^2.9.6",
+    "bcrypt": "^3.0.6",
     "dotenv-safe": "^8.1.0",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.5",
     "knex": "^0.19.5",
     "nodemon": "^1.19.3",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
