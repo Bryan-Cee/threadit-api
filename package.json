@@ -11,7 +11,8 @@
     "migrate:latest": "npx knex migrate:latest",
     "migrate:up": "npx knex migrate:up",
     "migrate:down": "npx knex migrate:down",
-    "seed": "npx knex seed:run"
+    "seed": "npx knex seed:run",
+    "lint": "eslint ."
   },
   "dependencies": {
     "apollo-server": "^2.9.6",
@@ -21,5 +22,13 @@
     "knex": "^0.19.5",
     "nodemon": "^1.19.3",
     "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
