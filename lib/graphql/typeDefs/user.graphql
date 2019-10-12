@@ -1,6 +1,4 @@
-type User {
-    username: String
-    firstname: String
-    lastname: String
-    avatar: String
+type Login {
+    id: ID
+    email: String
 }
