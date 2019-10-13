@@ -1,7 +1,6 @@
 #import { Login } from './typeDefs/user.graphql'
 
 type Query {
-    test: String
     user: Login
 }
 
