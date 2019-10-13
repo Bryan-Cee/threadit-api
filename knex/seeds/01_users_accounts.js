@@ -8,7 +8,8 @@ exports.seed = function(knex, Promise) {
       const users = {
         id: 1,
         email: "ceebryan@gmail.com",
-        password: "a;lsdjf34qpntalv49876qoasdfuo3423as4v.78y"
+        password: "a;lsdjf34qpntalv49876qoasdfuo3423as4v.78y",
+        username: "ceebryan"
       };
       return knex("user_account").insert(users);
     });

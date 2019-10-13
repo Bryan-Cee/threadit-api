@@ -4,6 +4,7 @@ exports.up = function(knex) {
     t.increments("id").unsigned().primary();
     t.string("email").notNull().unique();
     t.text("password").notNull();
+    t.text("username").notNull().unique();
   });
 };
 
