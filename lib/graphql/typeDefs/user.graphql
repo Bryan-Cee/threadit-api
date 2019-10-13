@@ -1,5 +1,10 @@
 type Login {
     id: ID!
-    email: String!
     username: String!
+    email: String
+}
+
+type UserLogin {
+    token: String!
+    user: Login!
 }

@@ -25,6 +25,7 @@
     "dotenv-safe": "^8.1.0",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.5",
     "nodemon": "^1.19.3",
     "pg": "^7.12.1",
