@@ -6,9 +6,9 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       const users = {
-        id: 1,
         email: "ceebryan@gmail.com",
-        password: "a;lsdjf34qpntalv49876qoasdfuo3423as4v.78y",
+        password:
+          `$2b$10$h4FBz1GVS75zZnDGO9.ykOGf7eNptRrb.zYWxWSAHf7hlKL3.QbDi`,
         username: "ceebryan"
       };
       return knex("user_account").insert(users);

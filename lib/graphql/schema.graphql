@@ -1,11 +1,21 @@
-#import { Login } from './typeDefs/user.graphql'
+#import { Login, Profile } from './typeDefs/user.graphql'
 
 type Query {
     user: Login
+    profile(id: Int!): Profile!
 }
 
 type Mutation {
     register(email: String!, password: String!): Login!
     login(email: String!, password: String!): UserLogin!
     forgotPassword(email: String!): String
+    editProfile(input: ProfileInput): Profile!
+}
+
+input ProfileInput {
+    userId: ID!
+    name: String,
+    bio: String,
+    location: String
+    avatar: String
 }
