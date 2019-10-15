@@ -12,7 +12,8 @@
     "migrate:up": "npx knex migrate:up",
     "migrate:down": "npx knex migrate:down",
     "seed": "npx knex seed:run",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "mocha tests"
   },
   "husky": {
     "hooks": {
@@ -20,6 +21,7 @@
     }
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "apollo-server": "^2.9.6",
     "bcrypt": "^3.0.6",
     "dotenv-safe": "^8.1.0",
@@ -32,12 +34,14 @@
     "validator": "^11.1.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^3.0.8"
+    "husky": "^3.0.8",
+    "mocha": "^6.2.1"
   }
 }
