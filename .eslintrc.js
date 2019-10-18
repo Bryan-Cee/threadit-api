@@ -17,6 +17,13 @@ module.exports = {
   "rules": {
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
     "semi": ["error", "always"],
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "only-multiline",
+      "imports": "only-multiline",
+      "exports": "only-multiline",
+      "functions": "only-multiline"
+    }],
     "space-before-function-paren": ["error", {
       "anonymous": "never",
       "named": "never",

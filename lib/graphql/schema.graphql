@@ -1,8 +1,9 @@
-#import { Login, Profile } from './typeDefs/user.graphql'
+#import { Login } from './typeDefs/user.graphql'
+#import { Profile, ProfileFollow } from './typeDefs/profile.graphql'
 
 type Query {
     user: Login
-    profile(id: Int!): Profile!
+    profile(id: ID!): Profile!
 }
 
 type Mutation {
@@ -10,6 +11,7 @@ type Mutation {
     login(email: String!, password: String!): UserLogin!
     resetRequest(email: String!): String!
     editProfile(input: ProfileInput): Profile!
+    followProfile(profileId: ID!): ProfileFollow!
 }
 
 input ProfileInput {

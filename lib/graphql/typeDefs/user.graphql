@@ -8,16 +8,3 @@ type UserLogin {
     token: String!
     user: Login!
 }
-
-type Profile {
-    userId: ID
-    profileId: Int
-    username: String
-    email: String
-    name: String
-    bio: String
-    location: String
-    avatar: String
-    createdAt: String
-    updatedAt: String
-}
