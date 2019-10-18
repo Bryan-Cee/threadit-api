@@ -20,7 +20,7 @@ exports.up = function(knex) {
       u.email, p.name, p.bio, p.location, p.avatar, 
       u.created_at, u.updated_at
       FROM user_account u
-      INNER JOIN user_profile p
+      LEFT JOIN user_profile p
       ON u.user_id = p.user_id
     `);
   });
