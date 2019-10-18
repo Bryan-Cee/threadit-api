@@ -1,8 +1,8 @@
 
 exports.seed = function(knex, Promise) {
-  console.log("seeding user_profile...");
+  console.log("=> seeding user_profile...");
   // Deletes ALL existing entries
-  return knex("=> user_profile").del()
+  return knex("user_profile").del()
     .then(function() {
     // Inserts seed entries
       const usersProfile = {

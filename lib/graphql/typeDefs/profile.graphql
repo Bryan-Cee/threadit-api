@@ -1,0 +1,18 @@
+type Profile {
+    userId: ID
+    profileId: Int
+    username: String
+    email: String
+    name: String
+    bio: String
+    location: String
+    followers: Int
+    avatar: String
+    createdAt: String
+    updatedAt: String
+}
+
+type ProfileFollow {
+    totalFollowers: String!
+    followed: Boolean!
+}
