@@ -14,6 +14,7 @@ exports.up = function(knex) {
       .references("user_id")
       .inTable("user_account");
   }).then(() => {
+    console.log("=> User_followers table created...");
     return knex.raw(`
       CREATE OR REPLACE VIEW user_profile_info AS
       SELECT u.user_id, p.profile_id, u.username, 
@@ -23,7 +24,7 @@ exports.up = function(knex) {
       LEFT JOIN user_profile p
       ON u.user_id = p.user_id
     `);
-  });
+  }).then(() => console.log("=> User_profile_info view created..."));
 };
 
 exports.down = function(knex) {

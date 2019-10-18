@@ -8,7 +8,7 @@ exports.up = function(knex) {
     t.text("resetPasswordToken").nullable();
     t.text("resetPasswordExpires").nullable();
     t.timestamps(false, true);
-  });
+  }).then(() => console.log("=> User_account table created..."));
 };
 
 exports.down = function(knex) {
