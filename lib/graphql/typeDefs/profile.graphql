@@ -16,3 +16,11 @@ type ProfileFollow {
     totalFollowers: String!
     followed: Boolean!
 }
+
+input ProfileInput {
+    userId: ID!
+    name: String,
+    bio: String,
+    location: String
+    avatar: String
+}
