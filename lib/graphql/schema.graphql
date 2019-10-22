@@ -1,23 +1,19 @@
 #import { Login } from './typeDefs/user.graphql'
-#import { Profile, ProfileFollow } from './typeDefs/profile.graphql'
+#import { Profile, ProfileInput, ProfileFollow } from './typeDefs/profile.graphql'
+#import { Community } from './typeDefs/community.graphql'
 
 type Query {
-    user: Login
     profile(id: ID!): Profile!
+    user: Login
 }
 
 type Mutation {
-    register(email: String!, password: String!): Login!
-    login(email: String!, password: String!): UserLogin!
-    resetRequest(email: String!): String!
+    createCommunity(name: String!, description: String): Community!
     editProfile(input: ProfileInput): Profile!
     followProfile(profileId: ID!): ProfileFollow!
+    login(email: String!, password: String!): UserLogin!
+    register(email: String!, password: String!): Login!
+    resetRequest(email: String!): String!
 }
 
-input ProfileInput {
-    userId: ID!
-    name: String,
-    bio: String,
-    location: String
-    avatar: String
-}
+
