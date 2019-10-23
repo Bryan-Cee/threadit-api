@@ -4,16 +4,8 @@ exports.up = function(knex) {
     t.bigIncrements("post_id").primary().unsigned();
     t.text("content").nullable();
     t.timestamps(false, true);
-    t.integer("author_id").unsigned().notNullable();
-    t.integer("community_id").unsigned().notNullable();
-
-    t.foreign("author_id")
-      .references("profile_id")
-      .inTable("user_profile");
-
-    t.foreign("community_id")
-      .references("community_id")
-      .inTable("communities");
+    t.integer("author_community").references("id")
+      .inTable("community_members");
   }).then(() => console.log("=> User_posts table created..."));
 };
 
