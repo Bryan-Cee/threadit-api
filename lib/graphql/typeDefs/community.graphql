@@ -7,3 +7,8 @@ type Community {
     createdAt: String
     updatedAt: String
 }
+
+type CommunityList {
+    count: Int!,
+    communities: [Community]!
+}
