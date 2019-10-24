@@ -1,6 +1,7 @@
 #import { Login } from './typeDefs/user.graphql'
 #import { Profile, ProfileInput, ProfileFollow } from './typeDefs/profile.graphql'
 #import { Community } from './typeDefs/community.graphql'
+#import { Post } from './typeDefs/post.graphql'
 
 type Query {
     profile(id: ID!): Profile!
@@ -9,6 +10,7 @@ type Query {
 
 type Mutation {
     createCommunity(name: String!, description: String): Community!
+    createPost(content: String!, communityId: Int = 1): Post
     editProfile(input: ProfileInput): Profile!
     followProfile(profileId: ID!): ProfileFollow!
     login(email: String!, password: String!): UserLogin!

@@ -1,0 +1,9 @@
+
+type Post {
+    postId: ID!
+    content: String
+    author: Profile
+    community: Community
+    createdAt: String
+    updatedAt: String
+}
