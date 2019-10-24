@@ -1,9 +1,10 @@
 #import { Login } from './typeDefs/user.graphql'
 #import { Profile, ProfileInput, ProfileFollow } from './typeDefs/profile.graphql'
-#import { Community } from './typeDefs/community.graphql'
+#import { Community, CommunityList } from './typeDefs/community.graphql'
 #import { Post } from './typeDefs/post.graphql'
 
 type Query {
+    communities(after: Int, first: Int = 10): CommunityList!
     profile(id: ID!): Profile!
     user: Login
 }
