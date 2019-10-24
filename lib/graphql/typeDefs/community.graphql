@@ -2,6 +2,7 @@
 type Community {
     communityId: ID!
     name: String!
+    founder: Profile!
     description: String
     createdAt: String
     updatedAt: String
