@@ -12,3 +12,8 @@ type CommunityList {
     count: Int!,
     communities: [Community]!
 }
+
+type CommunityJoined {
+    name: String!
+    description: String
+}
