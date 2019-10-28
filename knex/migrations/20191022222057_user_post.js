@@ -4,7 +4,10 @@ exports.up = function(knex) {
     t.bigIncrements("post_id").primary().unsigned();
     t.text("content").nullable();
     t.timestamps(false, true);
-    t.integer("author_community").references("id")
+    t.integer("author_community").unsigned().notNullable();
+
+    t.foreign("author_community")
+      .references("id")
       .inTable("community_members");
   }).then(() => console.log("=> User_posts table created..."));
 };
