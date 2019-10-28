@@ -21,3 +21,7 @@ type Mutation {
     register(email: String!, password: String!): Login!
     resetRequest(email: String!): String!
 }
+
+type Subscription {
+    commentAdded(postId: ID!): Comment
+}
