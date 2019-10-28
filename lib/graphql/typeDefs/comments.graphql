@@ -1,0 +1,8 @@
+
+type Comment {
+    commentId: ID!
+    authorId: ID!
+    message: String!
+    createdAt: String
+    updatedAt: String
+}

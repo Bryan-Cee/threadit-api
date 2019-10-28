@@ -5,9 +5,12 @@ exports.seed = function(knex) {
   // Deletes ALL existing entries
 
   return Promise.all([
+    knex.raw(`ALTER TABLE communities DISABLE TRIGGER ALL`),
+    knex.raw(`ALTER TABLE community_members DISABLE TRIGGER ALL`),
     knex.raw(`ALTER TABLE user_account DISABLE TRIGGER ALL`),
+    knex.raw(`ALTER TABLE user_comments DISABLE TRIGGER ALL`),
     knex.raw(`ALTER TABLE user_followers DISABLE TRIGGER ALL`),
-    knex.raw(`ALTER TABLE user_profile DISABLE TRIGGER ALL`),
-    knex.raw(`ALTER TABLE communities DISABLE TRIGGER ALL`)
+    knex.raw(`ALTER TABLE user_posts DISABLE TRIGGER ALL`),
+    knex.raw(`ALTER TABLE user_profile DISABLE TRIGGER ALL`)
   ]);
 };
