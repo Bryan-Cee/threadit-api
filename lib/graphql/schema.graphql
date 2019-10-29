@@ -8,6 +8,7 @@ type Query {
     communities(after: Int, first: Int = 10): CommunityList!
     profile(id: ID!): Profile!
     user: Login
+    comments(postId: ID!, after: Int, first: Int = 10): [Comment]!
 }
 
 type Mutation {
