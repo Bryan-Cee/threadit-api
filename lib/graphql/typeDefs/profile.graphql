@@ -6,6 +6,7 @@ type Profile {
     email: String
     name: String
     bio: String
+    firstSetup: Boolean
     location: String
     followers: Int
     avatar: String
