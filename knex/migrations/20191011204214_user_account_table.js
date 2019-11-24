@@ -3,6 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("user_account", function(t) {
     t.bigIncrements("user_id").primary().unsigned();
     t.string("email").notNullable().unique();
+    t.boolean("verified").notNullable().defaultTo(false);
     t.text("password").notNullable();
     t.string("username").notNullable().unique();
     t.text("resetPasswordToken").nullable();

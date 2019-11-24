@@ -20,7 +20,7 @@ exports.up = function(knex) {
       CREATE OR REPLACE VIEW user_profile_info AS
       SELECT u.user_id, p.profile_id, u.username, 
       u.email, p.name, p.bio, p.location, p.avatar, 
-      p.first_setup, u.created_at, u.updated_at
+      p.first_setup, u.verified, u.created_at, u.updated_at
       FROM user_account u
       LEFT JOIN user_profile p
       ON u.user_id = p.user_id

@@ -2,6 +2,7 @@ type Login {
     userId: ID!
     username: String!
     email: String
+    verified: Boolean!
 }
 
 type UserLogin {
