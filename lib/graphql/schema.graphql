@@ -19,8 +19,9 @@ type Mutation {
     followProfile(profileId: ID!): ProfileFollow!
     joinCommunity(communityId: ID!): CommunityJoined,
     login(email: String!, password: String!): UserLogin!
-    register(email: String!, password: String!): Login!
+    register(email: String!, password: String!): String!
     resetRequest(email: String!): String!
+    verifyAccount: UserLogin!
 }
 
 type Subscription {
