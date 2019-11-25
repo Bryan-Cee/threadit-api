@@ -21,6 +21,7 @@ type Mutation {
     login(email: String!, password: String!): UserLogin!
     register(email: String!, password: String!): String!
     resetRequest(email: String!): String!
+    resetPassword(password: String!): UserLogin
     verifyAccount: UserLogin!
 }
 
