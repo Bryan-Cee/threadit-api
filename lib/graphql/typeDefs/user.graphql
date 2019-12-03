@@ -9,3 +9,8 @@ type UserLogin {
     token: String!
     user: Login!
 }
+
+type ResetPassword {
+    message: String,
+    success: Boolean
+}
