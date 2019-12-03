@@ -1,4 +1,4 @@
-#import { Login } from './typeDefs/user.graphql'
+#import { Login, ResetPassword } from './typeDefs/user.graphql'
 #import { Profile, ProfileInput, ProfileFollow } from './typeDefs/profile.graphql'
 #import { Community, CommunityList, CommunityJoined } from './typeDefs/community.graphql'
 #import { Post } from './typeDefs/post.graphql'
@@ -21,7 +21,7 @@ type Mutation {
     login(email: String!, password: String!): UserLogin!
     register(email: String!, password: String!): String!
     resetRequest(email: String!): String!
-    resetPassword(password: String!): UserLogin
+    resetPassword(password: String!): ResetPassword!
     verifyAccount: UserLogin!
 }
 
