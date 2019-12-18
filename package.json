@@ -39,6 +39,7 @@
     "validator": "^11.1.0"
   },
   "devDependencies": {
+    "apollo-server-testing": "^2.9.13",
     "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
@@ -50,6 +51,7 @@
     "mocha": "^6.2.1",
     "nock": "^11.7.0",
     "nyc": "^14.1.1",
-    "sinon": "^7.5.0"
+    "sinon": "^7.5.0",
+    "sinon-test": "^2.4.1"
   }
 }

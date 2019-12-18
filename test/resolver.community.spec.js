@@ -10,6 +10,7 @@ const client = require("../lib/datasource");
 const helpers = require("../lib/helpers");
 const jwt = require("jsonwebtoken");
 
+// TODO: Fix these failing tests
 describe("Community resolvers", function() {
   const sandbox = sinon.createSandbox();
   const req = { headers: { authorization: "token" } };
