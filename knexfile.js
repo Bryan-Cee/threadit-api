@@ -33,11 +33,7 @@ module.exports = {
 
   staging: {
     client: "pg",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    },
+    connection: process.env.STAGING_DATABASE_URI,
     pool: {
       min: 2,
       max: 10
