@@ -15,7 +15,7 @@
     "migrate:down": "npx knex migrate:down",
     "seed": "npx knex seed:run",
     "lint": "eslint .",
-    "test": "mocha"
+    "test": "mocha --watch ./lib/**/*.js ./test/**/*.js --recursive"
   },
   "husky": {
     "hooks": {
