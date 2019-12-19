@@ -8,8 +8,6 @@
   "private": true,
   "scripts": {
     "start": "nodemon lib",
-    "build": "nodemon lib",
-    "now-start": "node lib",
     "migrate:latest": "npx knex migrate:latest",
     "migrate:up": "npx knex migrate:up",
     "migrate:down": "npx knex migrate:down",
