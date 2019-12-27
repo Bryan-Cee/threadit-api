@@ -3,7 +3,7 @@ require("dotenv-safe").config();
 module.exports = {
   development: {
     client: "pg",
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DEV_DATABASE_URL,
     pool: {
       min: 2,
       max: 10
@@ -18,7 +18,7 @@ module.exports = {
 
   testing: {
     client: "pg",
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DEV_DATABASE_URL,
     pool: {
       min: 2,
       max: 10
@@ -45,7 +45,7 @@ module.exports = {
 
   production: {
     client: "pg",
-    connection: process.env.DATABASE_URL,
+    connection: process.env.PROD_DATABASE_URL,
     pool: {
       min: 2,
       max: 10
