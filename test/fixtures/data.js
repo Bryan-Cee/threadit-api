@@ -58,4 +58,30 @@ module.exports = {
       }
     ]
   },
+  profile: {
+    userId: "1",
+    username: "cheruiyotbryan",
+    email: "cheruiyotbryan@gmail.com",
+    profileId: "10",
+    name: null,
+    bio: null,
+    location: null,
+    avatar: null,
+    firstSetup: true,
+    followers: null,
+    createdAt: "2019-12-12T15:26:50.468Z",
+    updatedAt: "2019-12-12T15:26:50.468Z"
+  },
+  comments: [
+    {
+      commentId: "1",
+      authorId: "1",
+      message: "Just a comment",
+    },
+    {
+      commentId: "1",
+      authorId: "1",
+      message: "Just another comment",
+    }
+  ]
 };
