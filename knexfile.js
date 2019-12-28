@@ -18,7 +18,7 @@ module.exports = {
 
   testing: {
     client: "pg",
-    connection: process.env.DEV_DATABASE_URL,
+    connection: process.env.TEST_DATABASE_URL,
     pool: {
       min: 2,
       max: 10

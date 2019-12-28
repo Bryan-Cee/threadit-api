@@ -13,7 +13,7 @@ type Query {
 
 type Mutation {
     createComment(message: String!, postId: ID): Comment
-    createCommunity(name: String!, description: String): Community!
+    createCommunity(name: String!, description: String): Community
     createPost(content: String!, communityId: Int = 1): Post
     editProfile(input: ProfileInput): Profile!
     followProfile(profileId: ID!): ProfileFollow!

@@ -13,7 +13,10 @@
     "migrate:down": "npx knex migrate:down",
     "seed": "npx knex seed:run",
     "lint": "eslint .",
-    "test": "mocha --watch ./lib/**/*.js ./test/**/*.js --recursive"
+    "test": "mocha --recursive --exit",
+    "test:dev": "mocha --watch ./lib/**/*.js ./test/**/*.js --recursive",
+    "setup-test": "yarn migrate:latest && yarn seed",
+    "pretest": "node ./setupTest.js && yarn setup-test"
   },
   "husky": {
     "hooks": {
