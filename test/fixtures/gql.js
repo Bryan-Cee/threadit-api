@@ -57,7 +57,60 @@ module.exports = {
               }
               createdAt
               updatedAt
-        }
-    }`,
+          }
+      }
+  `,
+  GET_PROFILE: gql`
+      query getProfile($id: ID!){
+          getProfile(id: $id){
+              userId
+              profileId
+              name
+              username
+              email
+              avatar
+              bio
+              location
+              firstSetup
+              followers
+              createdAt
+              updatedAt
+          }
+      }
+  `,
+  CREATE_COMMUNITY: gql`
+      mutation createCommunity($name: String!, $description: String){
+          createCommunity(name: $name, description: $description){
+              communityId
+              name
+              description
+              founder{
+                  userId
+                  profileId
+                  username
+                  email
+              }
+              createdAt
+              updatedAt
+          }
+      }
+  `,
+  JOIN_COMMUNITY: gql`
+      mutation joinCommunity($communityId: ID!){
+          joinCommunity(communityId: $communityId){
+              description
+              name
+          }
+      }
+  `,
+  GET_COMMENTS: gql`
+      query comments($postId: ID!, $after: Int, $first: Int){
+          comments(postId: $postId, after: $after, first: $first){
+              authorId
+              commentId
+              message
+          }
+      }
+  `,
 };
 
