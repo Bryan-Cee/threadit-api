@@ -14,9 +14,10 @@
     "seed": "npx knex seed:run",
     "lint": "eslint .",
     "test": "mocha --recursive --exit",
-    "test:dev": "mocha --watch ./lib/**/*.js ./test/**/*.js --recursive",
-    "setup-test": "yarn migrate:latest && yarn seed",
-    "pretest": "node ./setupTest.js && yarn setup-test"
+    "test:dev": "mocha --ignore './test/unit/datasource.spec.js' --watch ./lib/**/*.js ./test/**/*.js --recursive",
+    "setup:dev": "NODE_ENV=development node ./setupTest.js && NODE_ENV=development yarn migrate:latest && NODE_ENV=development yarn seed",
+    "pretest": "node ./setupTest.js && yarn migrate:latest && yarn seed",
+    "posttest": "node ./setupTest.js"
   },
   "husky": {
     "hooks": {

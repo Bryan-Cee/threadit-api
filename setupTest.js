@@ -1,4 +1,7 @@
-const config = require("./knexfile").testing;
+require("dotenv-safe").config();
+
+const NODE_ENV = process.env.NODE_ENV;
+const config = require("./knexfile")[NODE_ENV];
 
 const knex = require("knex")(config);
 
