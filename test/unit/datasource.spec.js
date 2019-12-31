@@ -14,11 +14,25 @@ describe("Data source", () => {
       expect(data).to.have.nested.property("postId");
       expect(data).to.have.nested.property("authorId");
     });
+    it("should return post not found when commenting on a post that does not exists", async function() {
+      const postId = 99;
+      const data = await client.createComment("testing 123", 1, postId);
+      expect(data).to.equal(`Post with the post_id ${postId} is not present in table "user_posts".`);
+    });
+    it("should return author not found when non existing user tries to create a comment", async function() {
+      const authorId = 99;
+      const data = await client.createComment("testing 123", authorId, 1);
+      expect(data).to.equal(`Author with the author_id ${authorId} is not present in table "user_profile".`);
+    });
   });
   describe("getComments", () => {
     it("should return a comment(s)", async function() {
-      const data = await client.getComments(1, 0, 10);
+      const message = "This is a comment for testing";
+      const post = await client.createPost("Testing 123", 1);
+      await client.createComment(message, 1, post.postId);
+      const data = await client.getComments(post.postId, 0, 10);
       expect(data).to.have.length(1);
+      expect(data[0].message).equal(message);
     });
     it("should return two comments as specified in the first param", async function() {
       await client.createComment("Just a simple message", 1, 1);

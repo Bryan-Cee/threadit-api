@@ -6,8 +6,6 @@ exports.up = function(knex) {
     t.boolean("verified").notNullable().defaultTo(false);
     t.text("password").notNullable();
     t.string("username").notNullable().unique();
-    t.text("resetPasswordToken").nullable();
-    t.text("resetPasswordExpires").nullable();
     t.timestamps(false, true);
   }).then(() => console.log("=> User_account table created..."));
 };
