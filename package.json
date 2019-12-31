@@ -17,7 +17,8 @@
     "test:dev": "mocha --ignore './test/unit/datasource.spec.js' --watch ./lib/**/*.js ./test/**/*.js --recursive",
     "setup:dev": "NODE_ENV=development node ./setupTest.js && NODE_ENV=development yarn migrate:latest && NODE_ENV=development yarn seed",
     "pretest": "node ./setupTest.js && yarn migrate:latest && yarn seed",
-    "posttest": "node ./setupTest.js"
+    "posttest": "node ./setupTest.js",
+    "heroku-postbuild": "knex migrate:latest"
   },
   "husky": {
     "hooks": {
