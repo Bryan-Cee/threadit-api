@@ -31,7 +31,7 @@ module.exports = {
     }],
     "eqeqeq": ["error", "always"],
     "complexity": ["error", 12],
-    "max-len": ["error", { "code": 80, "comments": 65, "ignoreUrls": true }],
+    "max-len": ["error", { "code": 120, "comments": 80, "ignoreUrls": true }],
     "max-depth": ["error", 4],
     "max-lines-per-function": 0,
     "no-unreachable": 2,
