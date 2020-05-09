@@ -3,7 +3,6 @@ const { describe, it, afterEach, beforeEach } = require("mocha");
 const { assert, expect } = require("chai");
 const sinon = require("sinon");
 const client = require("../../lib/datasource");
-const helpers = require("../../lib/helpers");
 const jwt = require("jsonwebtoken");
 const fixtures = require("../fixtures/data");
 const g = require("../fixtures/gql");
@@ -24,12 +23,10 @@ describe("Post resolvers", function() {
 
   beforeEach(() => {
     sinon.stub(jwt, "verify").returns({ data: { user: { ...userProfile } } });
-    sinon.stub(helpers, "isAuthenticated");
   });
 
   afterEach(() => {
     jwt.verify.restore();
-    helpers.isAuthenticated.restore();
     sandbox.restore();
   });
 
