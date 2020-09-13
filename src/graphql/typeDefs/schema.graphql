@@ -1,0 +1,8 @@
+
+type Query {
+  login(email: String, password: String): UserLogin
+}
+
+type Mutation {
+  createAccount(email: String, password: String): UserLogin
+}
