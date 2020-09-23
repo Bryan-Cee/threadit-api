@@ -1,4 +1,5 @@
 import * as Knex from "knex";
+const { onUpdateTrigger } = require("../../knexfile");
 
 export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable("user_account", function(t) {
@@ -8,7 +9,8 @@ export async function up(knex: Knex): Promise<void> {
         t.text("password").notNullable();
         t.string("username").notNullable().unique();
         t.timestamps(false, true);
-    }).then(() => console.log("=> user_account table created..."));
+    }).then(() => knex.raw(onUpdateTrigger('user_account')))
+      .then(() => console.log("=> user_account table created..."));
 }
 
 export async function down(knex: Knex): Promise<void> {
