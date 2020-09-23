@@ -1,8 +1,11 @@
 
 type Query {
-  login(email: String, password: String): UserLogin
+  login(email: String!, password: String!): LoginResp!
+  profile(profile_id: ID!): Profile!
+  profiles(offset: Int, limit: Int): ProfilesQuery
 }
 
 type Mutation {
-  createAccount(email: String, password: String): UserLogin
+  register(email: String, password: String): UserLogin
+  updateProfile(data: ProfileUpdate, profile_id: ID): Profile
 }

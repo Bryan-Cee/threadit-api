@@ -1,10 +1,17 @@
-import { login, createAccount } from "./user";
+import { login, register } from "./user";
+import { profile, profiles, updateProfile } from "./profile";
 
-export default {
+const resolvers = {
   Query: {
-    login
+    login,
+    profile,
+    profiles,
   },
   Mutation: {
-    createAccount
+    register,
+    updateProfile
   }
 };
+
+
+export default resolvers;

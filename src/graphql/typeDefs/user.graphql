@@ -10,3 +10,7 @@ type UserLogin {
   token: String!
   user: Login!
 }
+
+type LoginResp {
+  login: Boolean
+}

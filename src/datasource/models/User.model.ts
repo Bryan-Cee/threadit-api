@@ -9,6 +9,10 @@ export interface IUser {
     updated_at: string,
 }
 
+export interface IUserWithCred extends IUser {
+    password: string
+}
+
 class UserModel {
     private tableName = "user_account";
     private userFields = ["user_id", "email", "username", "verified","created_at", "updated_at"];
@@ -19,7 +23,7 @@ class UserModel {
           .select(...this.userFields);
     }
 
-    public async findById(id: number): Promise<IUser | undefined> {
+    public async findById(id: string): Promise<IUser | undefined> {
         return this.db<IUser>(this.tableName)
           .select(...this.userFields)
           .where("user_id", id)
@@ -36,6 +40,12 @@ class UserModel {
         const [user] = await this.db(this.tableName)
           .returning(this.userFields)
           .insert<IUser[]>({ email, password, username });
+        return user;
+    }
+
+    public async findUserWithPwd(email: string): Promise<IUserWithCred | undefined> {
+        const [user] = await this.db(this.tableName).select([...this.userFields, "password"]);
+
         return user;
     }
 
