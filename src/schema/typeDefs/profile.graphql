@@ -12,7 +12,7 @@ type Profile {
 }
 
 type ProfilesQuery {
-    totalCount: Int!,
+    count: Int!,
     data: [Profile!]!
 }
 
