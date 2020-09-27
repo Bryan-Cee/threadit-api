@@ -1,14 +1,16 @@
-import { AuthenticationError, UserInputError } from "apollo-server-express";
+import { UserInputError } from "apollo-server-express";
 import { GraphQLError } from "graphql";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-import { errors } from "../../constants/errors";
+import { errors } from "threadit/errors";
 
-const SECRET_KEY = process.env.SECRET_KEY || "Secret-Key";
+const SECRET = process.env.SECRET_KEY || "a-strong-key";
+const REFRESH_KEY = process.env.REFRESH_KEY || "a-strong-key";
+
 
 export const login = async (_: unknown, { email, password }: Record<string, string>, { model, res }: any) => {
-    const user = await model.User.findByEmail(email);
+    const user = await model.User.findByIdOrEmailUnsafe(email);
     if (!user) {
         throw new UserInputError(errors.USER_NOT_FOUND);
     }
@@ -18,13 +20,27 @@ export const login = async (_: unknown, { email, password }: Record<string, stri
     //     throw new AuthenticationError(errors.INVALID_CREDENTIALS);
     // }
 
-    const token = jwt.sign( { id: user.user_id, email: user.email }, SECRET_KEY);
+    const userDetails = {
+        user_id: user.user_id,
+        email: user.email,
+        username: user.username,
+        verified: user.verified
+    };
 
-    res.cookie('jwt', token, {
+    const token = jwt.sign({ user: userDetails }, SECRET, { expiresIn: '1m' });
+    const refreshToken = jwt.sign({ user: userDetails }, REFRESH_KEY + user.password, { expiresIn: '1h' });
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 1000 * 60 * 60 * 24, // 7 days
+        ...(process.env.NODE_ENV === "production" && { domain: 'example.com' }), //on HTTPS
+    });
+    res.cookie("refresh-token", refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-        ...(process.env.NODE_ENV === "production" ? { domain: 'example.com' }: {}), //on HTTPS
+        ...(process.env.NODE_ENV === "production" && { domain: 'example.com' }), //on HTTPS
     });
 
     return { login: true };
@@ -50,19 +66,26 @@ export const register = async (_: any, { email, password }: Record<string, strin
 
         const newUser = await model.User.create(email, hashedPassword, username);
 
+        const profile = await model.Profile.create({
+            user_id: newUser.user_id
+        });
+
         const token = jwt.sign(
-          { userId: newUser.user_id },
-          SECRET_KEY,
+          {
+              user_id: newUser.user_id,
+              profile_id: profile.profile_id
+          },
+          SECRET,
           { expiresIn: "7d" }
         );
 
-        res.cookie("jwt", token, {
+        res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
             ...(process.env.NODE_ENV === "production" ? { domain: 'example.com' }: {}), //on HTTPS
         });
-        console.log({ res });
+
         return { token, user: newUser }
     } catch (e) {
         console.log(e);

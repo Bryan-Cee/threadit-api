@@ -1,17 +1,16 @@
 import Knex from "knex";
 
-export interface IUser {
+export interface IPrivateUser {
     user_id: string,
     email: string,
     username: string,
     verified: boolean,
     created_at: string,
     updated_at: string,
+    password: string,
 }
 
-export interface IUserWithCred extends IUser {
-    password: string
-}
+export type IUser = Omit<IPrivateUser, "password">;
 
 class UserModel {
     private tableName = "user_account";
@@ -43,9 +42,9 @@ class UserModel {
         return user;
     }
 
-    public async findUserWithPwd(email: string): Promise<IUserWithCred | undefined> {
-        const [user] = await this.db(this.tableName).select([...this.userFields, "password"]);
-
+    public async findByIdOrEmailUnsafe(identifier: string): Promise<IPrivateUser | undefined> {
+        const obj = identifier.includes("@") ? { email: identifier } : { user_id: identifier };
+        const [user] = await this.db(this.tableName).select([...this.userFields, "password"]).where(obj);
         return user;
     }
 
