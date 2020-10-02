@@ -1,7 +1,7 @@
 import { createResolver } from 'apollo-resolvers';
 import { isInstance } from 'apollo-errors';
 
-import { AuthenticationRequiredError, UnknownError } from "../../types/errors";
+import { AuthenticationRequiredError, UnknownError } from "@threadit_errors";
 
 export const base = createResolver(
   null,

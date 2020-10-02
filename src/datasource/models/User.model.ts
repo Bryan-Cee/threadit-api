@@ -1,16 +1,6 @@
 import Knex from "knex";
 
-export interface IPrivateUser {
-    user_id: string,
-    email: string,
-    username: string,
-    verified: boolean,
-    created_at: string,
-    updated_at: string,
-    password: string,
-}
-
-export type IUser = Omit<IPrivateUser, "password">;
+import { IPrivateUser, IUser } from "threadit/types";
 
 class UserModel {
     private tableName = "user_account";

@@ -1,16 +1,14 @@
 import { UserInputError } from "apollo-server-express";
-import { GraphQLError } from "graphql";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-import { errors } from "threadit/errors";
+import { errors, UnknownError } from "@threadit_errors";
 
 const SECRET = process.env.SECRET_KEY || "a-strong-key";
 const REFRESH_KEY = process.env.REFRESH_KEY || "a-strong-key";
 
-
-export const login = async (_: unknown, { email, password }: Record<string, string>, { model, res }: any) => {
-    const user = await model.User.findByIdOrEmailUnsafe(email);
+export const login = async (_: unknown, { email, password }: Record<string, string>, { models, res }: any) => {
+    const user = await models.User.findByIdOrEmailUnsafe(email);
     if (!user) {
         throw new UserInputError(errors.USER_NOT_FOUND);
     }
@@ -46,9 +44,9 @@ export const login = async (_: unknown, { email, password }: Record<string, stri
     return { login: true };
 };
 
-export const register = async (_: any, { email, password }: Record<string, string>, { model, res }: any) => {
+export const register = async (_: any, { email, password }: Record<string, string>, { models, res }: any) => {
     // Check if user exist
-    const user = await model.User.findByEmail(email);
+    const user = await models.User.findByEmail(email);
     if (user) {
         throw new UserInputError(errors.USER_ALREADY_EXISTS);
     }
@@ -56,7 +54,7 @@ export const register = async (_: any, { email, password }: Record<string, strin
     try {
         // Check if username exist and generate a unique one if it does
         let username = email.split("@")[0];
-        if (await model.User.usernameTaken(username)) {
+        if (await models.User.usernameTaken(username)) {
             username = `${username}_${Math.round(Math.random() * 10000)}`;
         }
 
@@ -64,9 +62,9 @@ export const register = async (_: any, { email, password }: Record<string, strin
         const salt = await bcrypt.genSalt(saltRounds);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newUser = await model.User.create(email, hashedPassword, username);
+        const newUser = await models.User.create(email, hashedPassword, username);
 
-        const profile = await model.Profile.create({
+        const profile = await models.Profile.create({
             user_id: newUser.user_id
         });
 
@@ -89,6 +87,6 @@ export const register = async (_: any, { email, password }: Record<string, strin
         return { token, user: newUser }
     } catch (e) {
         console.log(e);
-        throw new GraphQLError(errors.INTERNAL_SERVER_ERROR)
+        throw new UnknownError();
     }
 };
