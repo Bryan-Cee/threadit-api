@@ -1,24 +1,21 @@
-import { login, register } from "./user";
 import { profile, profiles, updateProfile } from "./profile";
-import { createCommunity } from "./community";
-import { ICommunity, IContext } from "threadit/types";
+import { createCommunity, founder } from "./community";
+import { isAuthenticatedResolver } from "./base";
+import { login, register } from "./user";
 
 const resolvers = {
   Query: {
     login,
-    profile,
-    profiles,
+    profile: isAuthenticatedResolver.createResolver(profile),
+    profiles: isAuthenticatedResolver.createResolver(profiles),
   },
   Mutation: {
     register,
-    updateProfile,
-    createCommunity
+    updateProfile: isAuthenticatedResolver.createResolver(updateProfile),
+    createCommunity: isAuthenticatedResolver.createResolver(createCommunity)
   },
   Community: {
-    founder: async ({ founder_id: profile_id }: Partial<ICommunity>, _: any, { model, user }: Pick<IContext, "model" | "user">, info: any) => {
-      if (profile_id) return profile(null, { profile_id }, { model, user }, info);
-      return {};
-    }
+    founder
   }
 };
 
