@@ -26,12 +26,12 @@ export async function up(knex: Knex): Promise<void> {
           LEFT JOIN user_profile p
           ON u.user_id = p.user_id
         `);
-    }).then(() => console.log("=> User_profile_info view created..."));
+    }).then(() => console.log("=> user_profile_info view created..."));
 }
 
 export async function down(knex: Knex): Promise<void> {
     return Promise.all([
         knex.schema.dropTable("user_profile"),
         knex.raw(`DROP VIEW IF EXISTS user_profile_info;`)
-    ]).then(() => console.log("=> User_profile_info deleted..."));
+    ]).then(() => console.log("=> user_profile_info deleted..."));
 }

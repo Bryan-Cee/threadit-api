@@ -1,3 +1,5 @@
+import { formatError } from "apollo-errors";
+
 require('module-alias/register');
 require("dotenv").config();
 
@@ -6,24 +8,26 @@ import cookieParser from "cookie-parser"
 import express from "express";
 import cors from "cors";
 
-import { IContext } from "@threadit_types";
+import loggerMiddleWare, { logError } from "@threadit_logger";
 import { UnknownError } from "@threadit_errors";
+import { IContext } from "@threadit_types";
+
 import models from "./datasource";
-import schema from "./schema";
 import { addUser } from "./auth";
+import schema from "./schema";
 
 export const context = ({ req, res }: Partial<IContext>) => {
     const user = req?.user;
-
     try {
         return { req, res, user, models };
     } catch (error) {
-        console.error({ error });
-        throw new UnknownError();
+        logError(error, "Error in context creation");
+        throw UnknownError();
     }
 };
 
-const server = new ApolloServer({ schema, context });
+// @ts-ignore
+const server = new ApolloServer({ schema, context, formatError });
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
@@ -35,12 +39,12 @@ const app = express();
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
-// @ts-ignore
 app.use(addUser);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(loggerMiddleWare);
 
-server.applyMiddleware({ app, path: "/api" ,cors: false });
+server.applyMiddleware({ app, path: "/api", cors: false });
 
 app.listen({ port: PORT }, () =>
   console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)

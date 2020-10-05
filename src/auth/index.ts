@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import { IRefreshedTokens, IUserInReq } from "@threadit_types";
@@ -23,17 +23,21 @@ export const refreshTokens = async (token: string, refreshToken: string, models:
         const _user = await models.User.findByIdOrEmailUnsafe(user_id);
         if (!_user) return {};
 
-        const refreshSecret = REFRESH_KEY + _user.password;
+        const _profile = await models.Profile.findByUserId(_user?.user_id);
+        if (!_profile) return {};
 
+        const refreshSecret = REFRESH_KEY + _user.password;
         jwt.verify(refreshToken, refreshSecret);
-        const user: IUserInReq = {
+
+        let user: IUserInReq = {
             user_id: _user.user_id,
             email: _user.email,
             username: _user.username,
-            verified: _user.verified
+            verified: _user.verified,
+            profile_id: _profile.profile_id
         };
         const [newToken, newRefreshToken] = await createTokens(user, SECRET, refreshSecret);
-
+        console.log(newToken);
         return {
             token: newToken,
             refreshToken: newRefreshToken,
@@ -44,12 +48,13 @@ export const refreshTokens = async (token: string, refreshToken: string, models:
     }
 };
 
-export const addUser = async (req: Request & Record<"user", IUserInReq | undefined>, res: Response, next: any) => {
+export const addUser = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.token;
     if (!token) return next();
 
     try {
         const { user }: any = jwt.verify(token, SECRET);
+        // @ts-ignore
         req.user = user;
     } catch (error) {
         const refreshToken = req.cookies["refresh-token"];
@@ -60,6 +65,7 @@ export const addUser = async (req: Request & Record<"user", IUserInReq | undefin
             res.cookie("token", newToken.token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
             res.cookie("refresh-token", newToken.refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 7, httpOnly: true })
         }
+        // @ts-ignore
         req.user = newToken.user;
     }
     return next();

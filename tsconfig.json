@@ -12,7 +12,8 @@
     "baseUrl": "src",                       /* Base directory to resolve non-absolute module names. */
     "paths": {
       "@threadit_types": ["threadit/types.ts"],
-      "@threadit_errors": ["threadit/errors.ts"]
+      "@threadit_errors": ["threadit/errors.ts"],
+      "@threadit_logger": ["threadit/logger.ts"]
     }, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     "typeRoots": ["./node_modules/@types"], /* List of folders to include type definitions from. */
     "rootDirs": [

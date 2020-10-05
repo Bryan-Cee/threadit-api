@@ -20,6 +20,10 @@ class ProfileModel {
         return this.getModel().select().where("profile_id", profile_id).first();
     }
 
+    public async findByUserId(user_id: string): Promise<IProfile | undefined> {
+        return this.getModel().select().where("user_id", user_id).first();
+    }
+
     public async create(data: ICreateProfile): Promise<IProfile> {
         return this.getModel().returning(["*"]).insert(data);
     }
