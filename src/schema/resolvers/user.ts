@@ -2,7 +2,8 @@ import { UserInputError } from "apollo-server-express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-import { errors, UnknownError } from "@threadit_errors";
+import { errors, UnknownError, UserNotFound } from "@threadit_errors";
+import { IUserInReq } from "@threadit_types";
 
 const SECRET = process.env.SECRET_KEY || "a-strong-key";
 const REFRESH_KEY = process.env.REFRESH_KEY || "a-strong-key";
@@ -10,7 +11,7 @@ const REFRESH_KEY = process.env.REFRESH_KEY || "a-strong-key";
 export const login = async (_: unknown, { email, password }: Record<string, string>, { models, res }: any) => {
     const user = await models.User.findByIdOrEmailUnsafe(email);
     if (!user) {
-        throw new UserInputError(errors.USER_NOT_FOUND);
+        throw new UserNotFound();
     }
 
     // const match = await bcrypt.compare(password, user.password);
@@ -18,11 +19,14 @@ export const login = async (_: unknown, { email, password }: Record<string, stri
     //     throw new AuthenticationError(errors.INVALID_CREDENTIALS);
     // }
 
-    const userDetails = {
+    const _profile = await models.Profile.findByUserId(user.user_id);
+
+    const userDetails: IUserInReq = {
         user_id: user.user_id,
         email: user.email,
         username: user.username,
-        verified: user.verified
+        verified: user.verified,
+        profile_id: _profile.profile_id
     };
 
     const token = jwt.sign({ user: userDetails }, SECRET, { expiresIn: '1m' });

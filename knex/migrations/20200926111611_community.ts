@@ -11,8 +11,8 @@ export async function up(knex: Knex): Promise<void> {
         t.foreign("founder_id")
           .references("profile_id")
           .inTable("user_profile");
-    }).then(() => knex.raw(onUpdateTrigger('community')))
-      .then(() => console.log("=> Community table created..."))
+    }).then(() => knex.raw(onUpdateTrigger("community")))
+      .then(() => console.log("=> community table created..."))
 }
 
 export async function down(knex: Knex): Promise<void> {

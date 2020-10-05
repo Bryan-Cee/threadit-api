@@ -17,6 +17,6 @@ export async function seed(knex: Knex): Promise<void> {
               })
           });
 
-          return knex("community").insert(communities).then(() => console.log("seeding communities done..."));
+          return knex("community").insert(communities);
       });
 };

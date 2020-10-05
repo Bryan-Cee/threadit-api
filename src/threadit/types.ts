@@ -50,15 +50,15 @@ export interface IPrivateUser {
     user_id: string,
     email: string,
     username: string,
+    password: string,
     verified: boolean,
     created_at: string,
     updated_at: string,
-    password: string,
 }
 
 export type IUser = Omit<IPrivateUser, "password">;
 
-export type IUserInReq = Omit<IUser, "created_at" | "updated_at">;
+export type IUserInReq = Omit<IUser, "created_at" | "updated_at"> & Record<"profile_id", string>;
 
 export interface IRefreshedTokens {
     token: string
