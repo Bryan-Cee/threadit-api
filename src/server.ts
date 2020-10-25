@@ -26,12 +26,11 @@ export const context = ({ req, res }: Partial<IContext>) => {
     }
 };
 
-// @ts-ignore
-const server = new ApolloServer({ schema, context, formatError });
-const PORT = process.env.PORT || 3000;
+const server = new ApolloServer({ schema, context });
+const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-    origin: `http://localhost:${PORT}`,
+    origin: process.env.FRONTEND_URL,
     credentials: true
 };
 
@@ -42,9 +41,9 @@ app.use(cookieParser());
 app.use(addUser);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(loggerMiddleWare);
+// app.use(loggerMiddleWare);
 
-server.applyMiddleware({ app, path: "/api", cors: false });
+server.applyMiddleware({ app, path: "/graphql", cors: false });
 
 app.listen({ port: PORT }, () =>
   console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
