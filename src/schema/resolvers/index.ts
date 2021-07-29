@@ -12,12 +12,11 @@ const resolvers = {
   Mutation: {
     register,
     updateProfile: isAuthenticatedResolver.createResolver(updateProfile),
-    createCommunity: isAuthenticatedResolver.createResolver(createCommunity)
+    createCommunity: isAuthenticatedResolver.createResolver(createCommunity),
   },
   Community: {
-    founder
-  }
+    founder,
+  },
 };
-
 
 export default resolvers;

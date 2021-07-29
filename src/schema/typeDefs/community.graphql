@@ -1,20 +1,19 @@
-
 type Community {
-    community_id: ID!
-    name: String!
-    founder: Profile!
-    description: String
-    created_at: String
-    updated_at: String
-    later: String
+  community_id: ID!
+  name: String!
+  founder: Profile!
+  description: String
+  created_at: String
+  updated_at: String
+  later: String
 }
 
 type CommunityList {
-    count: String!,
-    communities: [Community]!
+  count: String!
+  communities: [Community]!
 }
 
 type CommunityJoined {
-    name: String!
-    description: String
+  name: String!
+  description: String
 }

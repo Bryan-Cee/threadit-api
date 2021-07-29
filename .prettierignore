@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+*.html
+
+.eslintrc.js
+.gitignore
+package.json
+tsconfig.json
+yarn.lock

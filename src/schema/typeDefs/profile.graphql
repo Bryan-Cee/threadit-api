@@ -1,24 +1,23 @@
-
 type Profile {
-    profile_id: ID,
-    name: String,
-    avatar: String,
-    bio: String,
-    location: String,
-    first_setup: Boolean,
-    user_id: ID,
-    created_at: String,
-    updated_at: String,
+  profile_id: ID
+  name: String
+  avatar: String
+  bio: String
+  location: String
+  first_setup: Boolean
+  user_id: ID
+  created_at: String
+  updated_at: String
 }
 
 type ProfilesQuery {
-    count: Int!,
-    data: [Profile!]!
+  count: Int!
+  data: [Profile!]!
 }
 
 input ProfileUpdate {
-    name: String,
-    avatar: String,
-    bio: String,
-    location: String,
+  name: String
+  avatar: String
+  bio: String
+  location: String
 }

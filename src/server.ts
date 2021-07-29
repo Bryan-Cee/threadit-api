@@ -1,10 +1,10 @@
 import { formatError } from "apollo-errors";
 
-require('module-alias/register');
+require("module-alias/register");
 require("dotenv").config();
 
 import { ApolloServer } from "apollo-server-express";
-import cookieParser from "cookie-parser"
+import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
 
@@ -17,21 +17,21 @@ import { addUser } from "./auth";
 import schema from "./schema";
 
 export const context = ({ req, res }: Partial<IContext>) => {
-    const user = req?.user;
-    try {
-        return { req, res, user, models };
-    } catch (error) {
-        // logError(error, "Error in context creation");
-        throw UnknownError();
-    }
+  const user = req?.user;
+  try {
+    return { req, res, user, models };
+  } catch (error) {
+    // logError(error, "Error in context creation");
+    throw UnknownError();
+  }
 };
 
 const server = new ApolloServer({ schema, context });
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URL,
-    credentials: true
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
 };
 
 const app = express();
@@ -45,6 +45,4 @@ app.use(express.json());
 
 server.applyMiddleware({ app, path: "/graphql", cors: false });
 
-app.listen({ port: PORT }, () =>
-  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
-);
+app.listen({ port: PORT }, () => console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`));

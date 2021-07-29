@@ -6,14 +6,14 @@ module.exports = {
     connection: process.env.DEV_DATABASE_URL,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      directory: `${__dirname}/knex/migrations`
+      directory: `${__dirname}/knex/migrations`,
     },
     seeds: {
-      directory: `${__dirname}/knex/seeds`
-    }
+      directory: `${__dirname}/knex/seeds`,
+    },
   },
 
   testing: {
@@ -21,14 +21,14 @@ module.exports = {
     connection: process.env.TEST_DATABASE_URL,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      directory: `${__dirname}/knex/migrations`
+      directory: `${__dirname}/knex/migrations`,
     },
     seeds: {
-      directory: `${__dirname}/knex/seeds`
-    }
+      directory: `${__dirname}/knex/seeds`,
+    },
   },
 
   staging: {
@@ -36,14 +36,14 @@ module.exports = {
     connection: process.env.STAGING_DATABASE_URI,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      directory: `${__dirname}/knex/migrations`
+      directory: `${__dirname}/knex/migrations`,
     },
     seeds: {
-      directory: `${__dirname}/knex/seeds`
-    }
+      directory: `${__dirname}/knex/seeds`,
+    },
   },
 
   production: {
@@ -51,11 +51,11 @@ module.exports = {
     connection: process.env.PROD_DATABASE_URL,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      directory: `${__dirname}/knex/migrations`
-    }
+      directory: `${__dirname}/knex/migrations`,
+    },
   },
 
   onUpdateTrigger: (table: string) => `
@@ -63,5 +63,5 @@ module.exports = {
     BEFORE UPDATE ON ${table}
     FOR EACH ROW
     EXECUTE PROCEDURE on_update_timestamp();
-  `
+  `,
 };
