@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser"
 import express from "express";
 import cors from "cors";
 
-import loggerMiddleWare, { logError } from "@threadit_logger";
+// import loggerMiddleWare, { logError } from "@threadit_logger";
 import { UnknownError } from "@threadit_errors";
 import { IContext } from "@threadit_types";
 
@@ -21,7 +21,7 @@ export const context = ({ req, res }: Partial<IContext>) => {
     try {
         return { req, res, user, models };
     } catch (error) {
-        logError(error, "Error in context creation");
+        // logError(error, "Error in context creation");
         throw UnknownError();
     }
 };

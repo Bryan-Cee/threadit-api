@@ -2,7 +2,7 @@ import { UserInputError } from "apollo-server-express";
 
 import { IContext, ICreateProfile, LimitOffSet } from "@threadit_types";
 import { UnknownError } from "@threadit_errors";
-import { logError } from "@threadit_logger";
+// import { logError } from "@threadit_logger";
 
 export const profile = async (obj: any, { profile_id }: { profile_id: string }, { models, user }: Pick<IContext, "models" | "user">, info: any) => {
     try {
@@ -14,7 +14,7 @@ export const profile = async (obj: any, { profile_id }: { profile_id: string }, 
         if (e.code === "22P02") {
             throw new UserInputError("profile_id input value has a problem!");
         }
-        logError(e, "Error in getting specific profile");
+        // logError(e, "Error in getting specific profile");
         return UnknownError();
     }
 };
@@ -23,7 +23,7 @@ export const profiles = async (_: any, { offset, limit }: LimitOffSet, { models,
     try {
         return models.Profile.findAll(offset, limit);
     } catch (e) {
-        logError(e, "Error in getting profiles");
+        // logError(e, "Error in getting profiles");
         return UnknownError();
     }
 };
@@ -40,7 +40,7 @@ export const updateProfile = async (_: any, { data, profile_id }: { data: ICreat
         if(e.code === "22P02") {
             throw new UserInputError("profile_id input value has a problem!");
         }
-        logError(e,"Error in updating profile");
+        // logError(e,"Error in updating profile");
         return UnknownError();
     }
 };
