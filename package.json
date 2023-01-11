@@ -43,7 +43,7 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^6.2.1",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.5",
+    "knex": "^2.4.0",
     "module-alias": "^2.2.2",
     "pg": "^8.3.3"
   },
